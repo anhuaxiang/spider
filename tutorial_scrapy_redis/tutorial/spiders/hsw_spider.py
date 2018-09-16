@@ -16,6 +16,10 @@ class HswSpiderSpider(RedisSpider):
         for url in list_url:
             yield scrapy.Request(url, callback=self.parse_item)
 
+        next_url = response.xpath('//div[@class="page"]/a[@class="a1"]/@href').extract()
+        if len(next_url) > 1:
+            yield scrapy.Request(next_url[1], callback=self.parse)
+
     def parse_item(self, response):
         item = TutorialItem()
         item['title'] = response.xpath('//div[@class="hd"]/h1/text()').extract_first()
