@@ -10,7 +10,7 @@ class DataToMysql:
             print("数据库连接信息报错")
             raise e
 
-    def write(self, table_name, info_dict):
+    def write(self,table_name,info_dict):
         """
         根据table_name与info自动生成建表语句和insert插入语句
         :param table_name: 数据需要写入的表名
